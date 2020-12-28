@@ -560,9 +560,12 @@ class UIRoot extends Component {
     this.setState({ enterInVR, waitingOnAudio: true });
 
     const hasGrantedMic = (await grantedMicLabels()).length > 0;
+    const micDisabled = this.props.store.state.preferences["disableCommOptions"];
 
     if (hasGrantedMic) {
       await this.setMediaStreamToDefault();
+      this.beginOrSkipAudioSetup();
+    } else if (micDisabled) {
       this.beginOrSkipAudioSetup();
     } else {
       this.pushHistoryState("entry_step", "mic_grant");
