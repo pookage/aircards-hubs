@@ -365,6 +365,41 @@ class UIRoot extends Component {
     }
 
     this.playerRig = scene.querySelector("#avatar-rig");
+
+    const hubId = new URLSearchParams(window.location.search).get("hub_id");
+
+    switch (hubId) {
+      case "SP7cQvU":
+      case "SFU-AQ": {
+        this.props.store.update({
+          preferences: {
+            disableCommOptions: true,
+            disableMediaCapture: true,
+            disableMediaInsertion: true,
+            disableUserDrawings: true,
+            disableNameTags: true,
+            muteMicOnEntry: true,
+            disableTeleporter: true
+          }
+        });
+        break;
+      }
+
+      case "SFU-LOUNGE": {
+        this.props.store.update({
+          preferences: {
+            disableCommOptions: true,
+            disableMediaCapture: true,
+            disableMediaInsertion: true,
+            disableUserDrawings: false,
+            disableNameTags: false,
+            muteMicOnEntry: true,
+            disableTeleporter: true
+          }
+        });
+        break;
+      }
+    }
   }
 
   UNSAFE_componentWillMount() {
