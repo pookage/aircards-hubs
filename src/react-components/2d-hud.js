@@ -66,7 +66,8 @@ class TopHUD extends Component {
     mediaSearchStore: PropTypes.object,
     isStreaming: PropTypes.bool,
     showStreamingTip: PropTypes.bool,
-    hideStreamingTip: PropTypes.func
+    hideStreamingTip: PropTypes.func,
+    store: PropTypes.object
   };
 
   state = {
@@ -264,7 +265,12 @@ class TopHUD extends Component {
     } else if (this.props.showVideoShareFailed) {
       tip = tipDivForType(`${isMobile ? "mobile" : "desktop"}.video_share_failed`, this.props.hideVideoShareFailedTip);
     } else if (this.props.activeTip) {
-      tip = tipDivForType(this.props.activeTip);
+      const ignoreTip =
+        this.props.activeTip.includes("mute_mode") && this.props.store.state.preferences["disableCommOptions"];
+
+      if (!ignoreTip) {
+        tip = tipDivForType(this.props.activeTip);
+      }
     }
 
     const micLevel = this.state.micLevel;
@@ -278,14 +284,16 @@ class TopHUD extends Component {
           <div className={cx(uiStyles.uiInteractive, styles.panel)}>
             {tip}
             {videoSharingButtons}
-            <div
-              className={cx(styles.iconButton)}
-              title={this.props.muted ? "Unmute Mic" : "Mute Mic"}
-              role="button"
-              onClick={this.props.onToggleMute}
-            >
-              <InlineSVG className={cx(styles.iconButtonIcon)} src={micIcon} />
-            </div>
+            {!this.props.store.state.preferences["disableCommOptions"] && (
+              <div
+                className={cx(styles.iconButton)}
+                title={this.props.muted ? "Unmute Mic" : "Mute Mic"}
+                role="button"
+                onClick={this.props.onToggleMute}
+              >
+                <InlineSVG className={cx(styles.iconButtonIcon)} src={micIcon} />
+              </div>
+            )}
             <div
               className={cx(styles.iconButton, {
                 [styles.disabled]: this.state.mediaDisabled

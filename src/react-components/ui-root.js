@@ -2149,6 +2149,7 @@ class UIRoot extends Component {
                   hideStreamingTip={() => {
                     this.setState({ showStreamingTip: false });
                   }}
+                  store={this.props.store}
                 />
                 {!watching && !streaming ? (
                   <UnlessFeature name="show_feedback_ui">
