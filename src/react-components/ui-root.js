@@ -366,10 +366,10 @@ class UIRoot extends Component {
 
     this.playerRig = scene.querySelector("#avatar-rig");
 
-    const hubName = window.location.pathname.split("/")[2];
+    const hubId = window.location.pathname.split("/")[1];
 
-    switch (hubName) {
-      case "sfu-aq": {
+    switch (hubId) {
+      case "iJkhD5f": {
         this.props.store.update({
           preferences: {
             disableCommOptions: true,
@@ -384,7 +384,7 @@ class UIRoot extends Component {
         break;
       }
 
-      case "sfu-lounge": {
+      case "VuEUzEP": {
         this.props.store.update({
           preferences: {
             disableCommOptions: true,
