@@ -124,7 +124,10 @@ export const SCHEMA = {
         locale: { type: "string" },
         showRtcDebugPanel: { type: "bool" },
         disableCommOptions: { type: "bool" },
-        disableMediaCapture: { type: "bool" }
+        disableMediaCapture: { type: "bool" },
+        disableMediaInsertion: { type: "bool" },
+        disableUserDrawings: { type: "bool" },
+        disableNameTags: { type: "bool" }
       }
     },
 

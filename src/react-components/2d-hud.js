@@ -295,31 +295,35 @@ class TopHUD extends Component {
                 <InlineSVG className={cx(styles.iconButtonIcon)} src={micIcon} />
               </div>
             )}
-            <div
-              className={cx(styles.iconButton, {
-                [styles.disabled]: this.state.mediaDisabled
-              })}
-              title={`Create${this.state.mediaDisabled ? " Disabled" : ""}`}
-              role="button"
-              onClick={
-                this.state.mediaDisabled ? noop : () => this.props.mediaSearchStore.sourceNavigateToDefaultSource()
-              }
-            >
-              <InlineSVG className={cx(styles.iconButtonIcon, styles.spawn)} src={SpawnIcon} />
-            </div>
-            <div
-              className={cx(styles.iconButton, {
-                [styles.disabled]: this.state.penDisabled
-              })}
-              title={`Pen${this.state.penDisabled ? " Disabled" : ""}`}
-              role="button"
-              onClick={this.state.penDisabled ? noop : this.props.onSpawnPen}
-            >
-              <InlineSVG
-                className={cx(styles.iconButtonIcon)}
-                src={this.props.isCursorHoldingPen ? PenIconActive : PenIcon}
-              />
-            </div>
+            {!this.props.store.state.preferences["disableMediaInsertion"] && (
+              <div
+                className={cx(styles.iconButton, {
+                  [styles.disabled]: this.state.mediaDisabled
+                })}
+                title={`Create${this.state.mediaDisabled ? " Disabled" : ""}`}
+                role="button"
+                onClick={
+                  this.state.mediaDisabled ? noop : () => this.props.mediaSearchStore.sourceNavigateToDefaultSource()
+                }
+              >
+                <InlineSVG className={cx(styles.iconButtonIcon, styles.spawn)} src={SpawnIcon} />
+              </div>
+            )}
+            {!this.props.store.state.preferences["disableUserDrawings"] && (
+              <div
+                className={cx(styles.iconButton, {
+                  [styles.disabled]: this.state.penDisabled
+                })}
+                title={`Pen${this.state.penDisabled ? " Disabled" : ""}`}
+                role="button"
+                onClick={this.state.penDisabled ? noop : this.props.onSpawnPen}
+              >
+                <InlineSVG
+                  className={cx(styles.iconButtonIcon)}
+                  src={this.props.isCursorHoldingPen ? PenIconActive : PenIcon}
+                />
+              </div>
+            )}
             <div
               className={cx(styles.iconButton, {
                 [styles.disabled]: this.state.cameraDisabled
