@@ -1100,11 +1100,13 @@ class UIRoot extends Component {
         </div>
 
         <div className={entryStyles.center}>
-          <LobbyChatBox
-            occupantCount={this.occupantCount()}
-            discordBridges={this.discordBridges()}
-            onSendMessage={this.sendMessage}
-          />
+          {!this.props.store.state.preferences["disableCommOptions"] && (
+            <LobbyChatBox
+              occupantCount={this.occupantCount()}
+              discordBridges={this.discordBridges()}
+              onSendMessage={this.sendMessage}
+            />
+          )}
         </div>
 
         {!this.state.waitingOnAudio &&
@@ -1903,7 +1905,8 @@ class UIRoot extends Component {
               )}
             {enteredOrWatchingOrPreload &&
               !this.state.objectInfo &&
-              !this.state.frozen && (
+              !this.state.frozen && 
+              !this.props.store.state.preferences["disableCommOptions"] && (
                 <InWorldChatBox
                   discordBridges={discordBridges}
                   onSendMessage={this.sendMessage}
