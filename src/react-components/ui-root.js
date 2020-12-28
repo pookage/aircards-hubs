@@ -712,7 +712,9 @@ class UIRoot extends Component {
   };
 
   beginOrSkipAudioSetup = () => {
-    const skipAudioSetup = this.props.forcedVREntryType && this.props.forcedVREntryType.endsWith("_now");
+    const skipAudioSetup =
+      (this.props.forcedVREntryType && this.props.forcedVREntryType.endsWith("_now")) ||
+      this.props.store.state.preferences["disableCommOptions"];
 
     if (skipAudioSetup) {
       this.onAudioReadyButton();
