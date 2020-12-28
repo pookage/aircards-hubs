@@ -535,7 +535,7 @@ const DEFINITIONS = new Map([
       { key: "disableMovement", prefType: PREFERENCE_LIST_ITEM_TYPE.CHECK_BOX, defaultBool: false },
       { key: "disableBackwardsMovement", prefType: PREFERENCE_LIST_ITEM_TYPE.CHECK_BOX, defaultBool: false },
       { key: "disableStrafing", prefType: PREFERENCE_LIST_ITEM_TYPE.CHECK_BOX, defaultBool: false },
-      // { key: "disableTeleporter", prefType: PREFERENCE_LIST_ITEM_TYPE.CHECK_BOX, defaultBool: true },
+      { key: "disableTeleporter", prefType: PREFERENCE_LIST_ITEM_TYPE.CHECK_BOX, defaultBool: true },
       {
         key: "movementSpeedModifier",
         prefType: PREFERENCE_LIST_ITEM_TYPE.NUMBER_WITH_RANGE,
@@ -668,6 +668,31 @@ function createItem(itemProps, store) {
       store.update({ preferences: { [itemProps.key]: v } });
     }
   };
+
+  switch (itemProps.key) {
+    // hide all mic options if comms are disabled
+    case "muteMicOnEntry":
+    case "disableEchoCancellation":
+    case "disableNoiseSuppression":
+    case "disableAutoGainControl":
+    case "globalVoiceVolume": {
+      if (store.state.preferences["disableCommOptions"]) return;
+      break;
+    }
+
+    // disable teleporter option if disabled
+    case "disableTeleporter": {
+      if (store.state.preferences["disableTeleporter"]) return;
+      break;
+    }
+
+    // disable option to control nametags if nametags are disabled
+    case "onlyShowNametagsInFreeze": {
+      if (store.state.preferences["disableNameTags"]) return;
+      break;
+    }
+  }
+
   return (
     <PreferenceListItem
       key={itemProps.key}
