@@ -228,7 +228,8 @@ class TopHUD extends Component {
   };
 
   render() {
-    const videoSharingButtons = this.buildVideoSharingButtons();
+    const videoSharingButtons =
+      !this.props.store.state.preferences["disableMediaCapture"] && this.buildVideoSharingButtons();
     const isMobile = AFRAME.utils.device.isMobile();
     const tipDivForType = (type, cancelFunc) => (
       <div className={cx(styles.topTip)}>

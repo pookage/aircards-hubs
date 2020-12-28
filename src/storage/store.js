@@ -123,7 +123,8 @@ export const SCHEMA = {
         disableAutoGainControl: { type: "bool" },
         locale: { type: "string" },
         showRtcDebugPanel: { type: "bool" },
-        disableCommOptions: { type: "bool" }
+        disableCommOptions: { type: "bool" },
+        disableMediaCapture: { type: "bool" }
       }
     },
 
