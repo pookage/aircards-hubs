@@ -127,6 +127,7 @@ class ProfileEntryPanel extends Component {
 
   render() {
     const { formatMessage } = this.props.intl;
+    const disableEditableNames = true;
 
     return (
       <div className={styles.profileEntry}>
@@ -142,8 +143,8 @@ class ProfileEntryPanel extends Component {
             <label htmlFor="#profile-entry-display-name" className={styles.title}>
               <FormattedMessage id="profile.header" />
             </label>
-            {this.props.displayNameOverride ? (
-              <span className={styles.displayName}>{this.props.displayNameOverride}</span>
+            {this.props.displayNameOverride || disableEditableNames ? (
+              <span className={styles.displayName}>{this.props.displayNameOverride || this.state.displayName}</span>
             ) : (
               <input
                 id="profile-entry-display-name"
