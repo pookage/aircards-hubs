@@ -387,7 +387,7 @@ class UIRoot extends Component {
       case "VuEUzEP": {
         this.props.store.update({
           preferences: {
-            disableCommOptions: true,
+            disableCommOptions: false,
             disableMediaCapture: true,
             disableMediaInsertion: true,
             disableUserDrawings: false,
