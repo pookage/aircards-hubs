@@ -71,12 +71,12 @@ export default class SettingsMenu extends Component {
     //
     // The reason I didn't do this with CSS is because this changes available functionality, so being more
     // explicit in code seems like a wise idea.
-    const hideExtranousItems = this.props.showAsOverlay;
+    const hideExtranousItems = true; //this.props.showAsOverlay;
 
-    const showRoomSettings = !!this.props.hubChannel.canOrWillIfCreator("update_hub");
-    const showCloseRoom = !!this.props.hubChannel.canOrWillIfCreator("close_hub");
-    const showRoomInfo = !!this.props.hubScene && !hideExtranousItems;
-    const showRoomSection = showRoomSettings || showRoomInfo || showCloseRoom;
+    const showRoomSettings = false; //!!this.props.hubChannel.canOrWillIfCreator("update_hub");
+    const showCloseRoom = false; //!!this.props.hubChannel.canOrWillIfCreator("close_hub");
+    const showRoomInfo = false; //!!this.props.hubScene && !hideExtranousItems;
+    const showRoomSection = false; //showRoomSettings || showRoomInfo || showCloseRoom;
     const showStreamerMode =
       this.props.scene.is("entered") && !!this.props.hubChannel.canOrWillIfCreator("kick_users") && !hideExtranousItems;
 
