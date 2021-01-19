@@ -226,14 +226,14 @@ export default class SettingsMenu extends Component {
                 </div>
               </div>
             )}
-            {showCloseRoom && (
+            {/* {showCloseRoom && (
               <div className={rowClasses}>
                 <div className={styles.icon}>
                   <i>
                     <FontAwesomeIcon icon={faDoorClosed} />
                   </i>
                 </div>
-                <div className={styles.listItem}>
+                 <div className={styles.listItem}>
                   <a
                     href="#"
                     role="button"
@@ -250,11 +250,11 @@ export default class SettingsMenu extends Component {
                       );
                     }}
                   >
-                    <FormattedMessage id="settings.close-room" />
+                    <FormattedMessage id="settings.close-room" /> 
                   </a>
-                </div>
+                </div> 
               </div>
-            )}
+            )} */}
             {showRoomInfo && (
               <div className={rowClasses}>
                 <div className={styles.icon}>
@@ -275,9 +275,9 @@ export default class SettingsMenu extends Component {
                 </div>
               </div>
             )}
-            {!hideExtranousItems && (
+            {/* {!hideExtranousItems && (
               <div className={rowClasses}>
-                <div className={styles.icon}>
+                 <div className={styles.icon}>
                   <i>
                     <FontAwesomeIcon icon={faPlus} />
                   </i>
@@ -297,9 +297,9 @@ export default class SettingsMenu extends Component {
                   >
                     <FormattedMessage id="settings.create-room" />
                   </a>
-                </div>
+                </div> 
               </div>
-            )}
+            )} */}
             {showStreamerMode && !hideExtranousItems ? (
               <div className={rowHeader}>
                 <FormattedMessage id="settings.row-tools" />
